@@ -17,14 +17,10 @@ import Trading212
 from Trading212 import Invest
 from selenium import webdriver
 import random
-import PySimpleGUI as sg
 
-wolfram_id ='8AJWKQ-YH772KJG97'
+wolfram_id ='your_own'
 engine = pyttsx3.init()
 engine.setProperty('rate',150)
-voices = engine.getProperty('voices')
-
-
 
 
 def speak(audio):
@@ -32,7 +28,7 @@ def speak(audio):
     engine.runAndWait()
 
 def stock(name):
-    trading = Invest('qhaliff.zuber@gmail.com',password='0139232230aA',panel='Panel.Real')
+    trading = Invest('email',password='password',panel='Panel.Real')
     traderes = str(trading.position_info(stock=name,info='ppl positive'))
     speak(traderes)
 
@@ -70,8 +66,8 @@ def sendemail(to,content):
     server.ehlo()
     server.starttls()
 
-    server.login('qhaliff.zuber@gmail.com','0139232230aA')
-    server.sendmail('qhaliff.zuber@gmail.com',to,content)
+    server.login('email','password')
+    server.sendmail('email',to,content)
     server.close()
 
 def cpu():
@@ -91,7 +87,7 @@ def screenshot():
     img = pyautogui.screenshot()
     speak('What do you want me to save this as?')
     name = TakeCommand()
-    img.save('C:/Users/ASUS/Desktop/Portfolio/Python VS Project/AI_Project/screenshots//'+name+'.png')
+    img.save('path'+name+'.png')
 
 
 def TakeCommand():
@@ -221,7 +217,7 @@ if __name__ == '__main__':
 
                 elif 'news' in query:
                     try:
-                        jsonobj = urlopen('http://newsapi.org/v2/everything?domains=wsj.com&apiKey=07159809b972432aac1e2947142f4bab')
+                        jsonobj = urlopen('http://newsapi.org/v2/everything?domains=wsj.com&apiKey='+'your_api')
                         data = json.load(jsonobj)
                         i=1
                         speak('Here are some articles from the Wall Street Journal')
